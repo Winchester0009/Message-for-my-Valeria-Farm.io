@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message for my fam</title>
+  <link rel="stylesheet" href="stylesbs.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto:wght@300&display=swap');
+
+    body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #000428, #004e92);
+      overflow: hidden;
+    }
+
+    #pinkboard {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    p {
+      position: absolute;
+      font-size: 22px;
+      color: #ffffff;
+      z-index: 1;
+      text-align: center;
+      width: 90%;
+      font-family: 'Playfair Display', serif;
+      animation: fadeIn 3s ease-in-out;
+      line-height: 1.6;
+    }
+
+    #start-btn {
+      position: absolute;
+      z-index: 2;
+      background-color: #ffffff;
+      color: #004e92;
+      font-family: 'Roboto', sans-serif;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    #start-btn:hover {
+      background-color: #004e92;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="pinkboard"></canvas>
+  <p id="message" style="display: none;">To my amazing valeria family, this message is for you...</p>
+  <button id="start-btn">Start</button>
+  <audio id="background-music" src="blue.mp3" loop></audio>
+  <script src="scrip.js"></script>
+ <script>
+  const introMessage = "To my Valeria family, this message is for you...";
+  const countdown = ["3", "2", "1"];
+  const messages = [
+    "Sometimes, the best gifts aren't wrapped in paper but are found in the most unexpected connections. Meeting you online has been a true blessing in my life.",
+    "Thank you for bringing joy, laughter, and warmth into my days. You’ve made this year so much brighter, and I’m grateful for our friendship.",
+    "As this year comes to an end, I hope we can continue to share these amazing moments together. Playing with you has brought me so much happiness.",
+    "No matter what the next year brings, I hope we can stay connected, laugh even more, and create new memories together.",
+    "You are more than friends, you're family to me. I’m so lucky to have you all. Let’s make the next year even better!",
+    "Advance merry Christmas Fam<3!! Wishing you all the love, happiness, and peace this season can bring."
+  ];
+
+  const messageElement = document.getElementById("message");
+  const music = document.getElementById("background-music");
+  const startButton = document.getElementById("start-btn");
+  let currentIndex = 0;
+
+  function startApp() {
+    startButton.style.display = "none"; 
+    messageElement.style.display = "block"; 
+    music.play(); 
+    showIntro(); 
+  }
+
+  function showIntro() {
+    messageElement.textContent = introMessage;
+    setTimeout(showCountdown, 5000); 
+  }
+
+  function showCountdown() {
+    if (currentIndex < countdown.length) {
+      messageElement.textContent = countdown[currentIndex];
+      currentIndex++;
+      setTimeout(showCountdown, 1000); 
+    } else {
+      currentIndex = 0; 
+      showMessages();
+    }
+  }
+
+  function showMessages() {
+    if (currentIndex < messages.length) {
+      messageElement.textContent = messages[currentIndex];
+      currentIndex++;
+      setTimeout(showMessages, 10000); 
+    }
+  }
+
+  startButton.addEventListener("click", startApp);
+</script>
+</body>
+
+</html>
