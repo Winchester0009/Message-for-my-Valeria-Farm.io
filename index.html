@@ -1,129 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Message for my fam</title>
-  <link rel="stylesheet" href="stylesbs.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto:wght@300&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Red Birthday Greetings</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8B0000, #4B0000);
+            font-family: 'Georgia', serif;
+            color: #FFD700;
+            overflow: hidden;
+        }
 
-    body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(to bottom, #000428, #004e92);
-      overflow: hidden;
-    }
+        .container {
+            text-align: center;
+            position: relative;
+        }
 
-    #pinkboard {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
 
-    p {
-      position: absolute;
-      font-size: 22px;
-      color: #ffffff;
-      z-index: 1;
-      text-align: center;
-      width: 90%;
-      font-family: 'Playfair Display', serif;
-      animation: fadeIn 3s ease-in-out;
-      line-height: 1.6;
-    }
+        p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            animation: slideIn 2s ease-in-out;
+        }
 
-    #start-btn {
-      position: absolute;
-      z-index: 2;
-      background-color: #ffffff;
-      color: #004e92;
-      font-family: 'Roboto', sans-serif;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-      animation: fadeIn 2s ease-in-out;
-    }
+        .crown {
+            font-size: 5rem;
+            animation: float 3s ease-in-out infinite;
+        }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-      to {
-        opacity: 1;
-      }
-    }
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out infinite;
+        }
 
-    #start-btn:hover {
-      background-color: #004e92;
-      color: #ffffff;
-    }
-  </style>
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+    </style>
 </head>
-
 <body>
-  <canvas id="pinkboard"></canvas>
-  <p id="message" style="display: none;">To my amazing valeria family, this message is for you...</p>
-  <button id="start-btn">Start</button>
-  <audio id="background-music" src="blue.mp3" loop></audio>
-  <script src="scrip.js"></script>
- <script>
-  const introMessage = "To my Valeria family, this message is for you...";
-  const countdown = ["3", "2", "1"];
-  const messages = [
-    "Sometimes, the best gifts aren't wrapped in paper but are found in the most unexpected connections. Meeting you online has been a true blessing in my life.",
-    "Thank you for bringing joy, laughter, and warmth into my days. You’ve made this year so much brighter, and I’m grateful for our friendship.",
-    "As this year comes to an end, I hope we can continue to share these amazing moments together. Playing with you has brought me so much happiness.",
-    "No matter what the next year brings, I hope we can stay connected, laugh even more, and create new memories together.",
-    "You are more than friends, you're family to me. I’m so lucky to have you all. Let’s make the next year even better!",
-    "Advance merry Christmas Fam<3!! Wishing you all the love, happiness, and peace this season can bring."
-  ];
+    <div class="container">
+        <div class="crown">👑</div>
+        <h1>Happy Birthday!</h1>
+        <p>Wishing you a day filled with joy and a year filled with prosperity.</p>
+    </div>
 
-  const messageElement = document.getElementById("message");
-  const music = document.getElementById("background-music");
-  const startButton = document.getElementById("start-btn");
-  let currentIndex = 0;
+    <div class="fireworks">
+        <!-- Fireworks will be generated here by JavaScript -->
+    </div>
 
-  function startApp() {
-    startButton.style.display = "none"; 
-    messageElement.style.display = "block"; 
-    music.play(); 
-    showIntro(); 
-  }
+    <script>
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.left = `${Math.random() * 100}%`;
+            firework.style.top = `${Math.random() * 100}%`;
+            firework.style.animationDuration = `${Math.random() * 1 + 1}s`;
+            document.querySelector('.fireworks').appendChild(firework);
 
-  function showIntro() {
-    messageElement.textContent = introMessage;
-    setTimeout(showCountdown, 5000); 
-  }
+            setTimeout(() => {
+                firework.remove();
+            }, 1500);
+        }
 
-  function showCountdown() {
-    if (currentIndex < countdown.length) {
-      messageElement.textContent = countdown[currentIndex];
-      currentIndex++;
-      setTimeout(showCountdown, 1000); 
-    } else {
-      currentIndex = 0; 
-      showMessages();
-    }
-  }
-
-  function showMessages() {
-    if (currentIndex < messages.length) {
-      messageElement.textContent = messages[currentIndex];
-      currentIndex++;
-      setTimeout(showMessages, 10000); 
-    }
-  }
-
-  startButton.addEventListener("click", startApp);
-</script>
+        setInterval(createFirework, 300);
+    </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Red Birthday Greetings</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8B0000, #4B0000);
+            font-family: 'Georgia', serif;
+            color: #FFD700;
+            overflow: hidden;
+        }
 
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            animation: slideIn 2s ease-in-out;
+        }
+
+        .crown {
+            font-size: 5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out infinite;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="crown">👑</div>
+        <h1>Happy Birthday!</h1>
+        <p>Wishing you a day filled with joy and a year filled with prosperity.</p>
+    </div>
+
+    <div class="fireworks">
+        <!-- Fireworks will be generated here by JavaScript -->
+    </div>
+
+    <script>
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.left = `${Math.random() * 100}%`;
+            firework.style.top = `${Math.random() * 100}%`;
+            firework.style.animationDuration = `${Math.random() * 1 + 1}s`;
+            document.querySelector('.fireworks').appendChild(firework);
+
+            setTimeout(() => {
+                firework.remove();
+            }, 1500);
+        }
+
+        setInterval(createFirework, 300);
+    </script>
+</body>
 </html>
