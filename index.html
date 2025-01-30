@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Red Birthday Greetings</title>
+    <title>Happy Birthday, Tita Jha!</title>
     <style>
         body {
             margin: 0;
@@ -12,32 +12,39 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #8B0000, #4B0000);
+            background: linear-gradient(135deg, #8B0000, #3B0000);
             font-family: 'Georgia', serif;
             color: #FFD700;
+            text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
         .container {
-            text-align: center;
             position: relative;
+            z-index: 10;
+            padding: 20px;
+            max-width: 90%;
+            animation: fadeIn 2s ease-in-out;
         }
 
         h1 {
             font-size: 4rem;
+            text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
             margin: 0;
-            animation: fadeIn 2s ease-in-out;
+            animation: slideIn 2s ease-in-out;
         }
 
         p {
             font-size: 1.5rem;
-            margin: 20px 0;
+            margin: 15px 0;
             animation: slideIn 2s ease-in-out;
         }
 
         .crown {
             font-size: 5rem;
-            animation: float 3s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite, fadeIn 2s ease-in-out;
+            text-shadow: 0px 0px 20px rgba(255, 215, 0, 0.9);
         }
 
         .fireworks {
@@ -47,16 +54,16 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
 
         .firework {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #FFD700;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             animation: explode 1.5s ease-out infinite;
+            opacity: 0.8;
         }
 
         @keyframes fadeIn {
@@ -76,28 +83,51 @@
 
         @keyframes explode {
             0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(3); opacity: 0; }
+            100% { transform: scale(2.5); opacity: 0; }
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            p { font-size: 1.2rem; }
+            .crown { font-size: 4rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            p { font-size: 1rem; }
+            .crown { font-size: 3.5rem; }
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="crown">👑</div>
-        <h1>Happy Birthday!</h1>
-        <p>Wishing you a day filled with joy and a year filled with prosperity.</p>
+        <h1>Happy Birthday, Tita Jha!</h1>
+        <p>Wishing you a day filled with joy and a year of blessings. we lab you po mwa mwa</p>
     </div>
 
-    <div class="fireworks">
-        <!-- Fireworks will be generated here by JavaScript -->
-    </div>
+    <div class="fireworks"></div>
 
     <script>
         function createFirework() {
             const firework = document.createElement('div');
             firework.classList.add('firework');
+
+            // Randomized positioning
             firework.style.left = `${Math.random() * 100}%`;
             firework.style.top = `${Math.random() * 100}%`;
-            firework.style.animationDuration = `${Math.random() * 1 + 1}s`;
+
+            // Randomized size and color
+            let size = Math.random() * 8 + 5;  
+            firework.style.width = `${size}px`;
+            firework.style.height = `${size}px`;
+            firework.style.background = `hsl(${Math.random() * 60 + 40}, 100%, 50%)`;  
+
+            // Randomized animation duration
+            firework.style.animationDuration = `${Math.random() * 1.5 + 1}s`;
+
             document.querySelector('.fireworks').appendChild(firework);
 
             setTimeout(() => {
@@ -105,117 +135,7 @@
             }, 1500);
         }
 
-        setInterval(createFirework, 300);
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Red Birthday Greetings</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #8B0000, #4B0000);
-            font-family: 'Georgia', serif;
-            color: #FFD700;
-            overflow: hidden;
-        }
-
-        .container {
-            text-align: center;
-            position: relative;
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin: 0;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        p {
-            font-size: 1.5rem;
-            margin: 20px 0;
-            animation: slideIn 2s ease-in-out;
-        }
-
-        .crown {
-            font-size: 5rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .fireworks {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .firework {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #FFD700;
-            border-radius: 50%;
-            animation: explode 1.5s ease-out infinite;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            0% { transform: translateY(-50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes explode {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(3); opacity: 0; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="crown">👑</div>
-        <h1>Happy Birthday!</h1>
-        <p>Wishing you a day filled with joy and a year filled with prosperity.</p>
-    </div>
-
-    <div class="fireworks">
-        <!-- Fireworks will be generated here by JavaScript -->
-    </div>
-
-    <script>
-        function createFirework() {
-            const firework = document.createElement('div');
-            firework.classList.add('firework');
-            firework.style.left = `${Math.random() * 100}%`;
-            firework.style.top = `${Math.random() * 100}%`;
-            firework.style.animationDuration = `${Math.random() * 1 + 1}s`;
-            document.querySelector('.fireworks').appendChild(firework);
-
-            setTimeout(() => {
-                firework.remove();
-            }, 1500);
-        }
-
-        setInterval(createFirework, 300);
+        setInterval(createFirework, 250);
     </script>
 </body>
 </html>
